@@ -2,21 +2,18 @@ clear;
 clc;
 close all;
 addpath(genpath('./'));
-addpath('/home/miguel/gitrepos/nlos/reconstruct/matlab');
 
-% filename = 'Z_l[0.00,-1.00,0.00]_r[1.57,0.00,3.14]_v[0.81,0.01,0.81]_s[64]_l[64]_gs[1.00]_conf.hdf5';
-% prefix = '/home/miguel/auxdrive/datasets/zsimple2/simple/';
+% Set the path to the nlos-framework utilities for matlab
+addpath('../nlos-framework/reconstruct/matlab');
 
-filename = 'K_l[0.00,-1.00,0.00]_r[1.57,0.00,3.14]_v[0.60,0.02,0.71]_s[128]_l[128]_gs[1.00]_conf.hdf5';
-prefix = '/home/miguel/auxdrive/datasets/missingcone/simple/';
-
-filename = 'bunny_l[0.00,-1.00,0.00]_r[1.57,0.00,3.14]_v[0.80,0.53,0.81]_s[64]_l[64]_gs[1.00]_conf.hdf5';
-prefix = '/home/miguel/auxdrive/datasets/zsimple2/simple/';
+% Try simple files if you want to recognize the reconstruction
+filename = 'DATASET FILE';
+prefix = 'PATH TO THE PREVIOUS FILE';
 
 
 actual_file = [prefix, filename];
 fprintf('Loading dataset %s', actual_file);
-ds = NLOSData(actual_file, 'bounces', 2, 'shifttime', true);
+ds = NLOSData(actual_file, 'bounces', 'sum', 'shifttime', true);
 detGridSizeCamera = double(ds.CameraGridPoints);
 detGridSizeLaser = double(ds.LaserGridPoints);
 
